@@ -16,11 +16,11 @@ import paypalrestsdk
 
 
 # Initialize PayPal SDK
-paypalrestsdk.configure({
-    "mode": "sandbox",  # Use 'sandbox' for testing and 'live' for production
-    "client_id": 'AV5W7joFIbxEhZI-7N0s7GdP7Hi9uTa4vGc-Z1ygLBQCW0nbQifUQvRKVYJFS-pe46yHeHBC-oNT-clE',
-    "client_secret": 'EEa8JJO4UpQfkllJctcEOaool1Lcl5UgVvZigAHhdQLN4MfcNATMSgj3PNscZIwjVfKKkE01ZVjgDoE1'
-})
+# paypalrestsdk.configure({
+#     "mode": "sandbox",  # Use 'sandbox' for testing and 'live' for production
+#     "client_id": 'AV5W7joFIbxEhZI-7N0s7GdP7Hi9uTa4vGc-Z1ygLBQCW0nbQifUQvRKVYJFS-pe46yHeHBC-oNT-clE',
+#     "client_secret": 'EEa8JJO4UpQfkllJctcEOaool1Lcl5UgVvZigAHhdQLN4MfcNATMSgj3PNscZIwjVfKKkE01ZVjgDoE1'
+# })
 
 # Create your views here.
 def index(request):
@@ -172,30 +172,30 @@ def create_payment(request):
     # Calculate the total amount on the server-side
     total_amount = calc_total_price(request)  # Example amount
     
-    # Create Payment object
-    payment = paypalrestsdk.Payment({
-        "intent": "sale",
-        "payer": {
-            "payment_method": "paypal"
-        },
-        "redirect_urls": {
-            "return_url": "http://localhost:8000/payment/execute/",
-            "cancel_url": "http://localhost:8000/payment/cancel/"
-        },
-        "transactions": [{
-            "amount": {
-                "total": str(total_amount),
-                "currency": "USD"
-            },
-            "description": "Test Transaction"
-        }]
-    })
+    # # Create Payment object
+    # payment = paypalrestsdk.Payment({
+    #     "intent": "sale",
+    #     "payer": {
+    #         "payment_method": "paypal"
+    #     },
+    #     "redirect_urls": {
+    #         "return_url": "http://localhost:8000/payment/execute/",
+    #         "cancel_url": "http://localhost:8000/payment/cancel/"
+    #     },
+    #     "transactions": [{
+    #         "amount": {
+    #             "total": str(total_amount),
+    #             "currency": "USD"
+    #         },
+    #         "description": "Test Transaction"
+    #     }]
+    # })
 
-    # Create payment
-    if payment.create():
-        return JsonResponse({"payment_id": payment.id, "total_amount": total_amount})
-    else:
-        return JsonResponse({"error": payment.error})
+    # # Create payment
+    # if payment.create():
+    #     return JsonResponse({"payment_id": payment.id, "total_amount": total_amount})
+    # else:
+    #     return JsonResponse({"error": payment.error})
     
 # utility functions
 def calc_total_price(request):
