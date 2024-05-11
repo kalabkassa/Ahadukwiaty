@@ -1,23 +1,24 @@
+from django.contrib.auth.models import User
 from django.db import models
 
+SIZE_CHOICES = [
+    ('S', 'S'),
+    ('M', 'SM'),
+    ('L', 'L'),
+    ('XL', 'XL'),
+    ('XXL', 'XXL'),
+    ('S M', 'S M'),
+    ('M L', 'M L'),
+    ('L XL', 'L XL'),
+    ('XL XXL', 'XL XXL'),
+    ('S M L', 'S M L'),
+    ('M L XL', 'M L XL'),
+    ('L XL XXL', 'L XL XXL'),
+    ('S M L XL', 'S M L XL'),
+    ('M L XL XXL', 'M L XL XXL'),
+    ('S M L XL XXL', 'S M L XL XXL'),
+]
 class Flower(models.Model):
-    SIZE_CHOICES = [
-        ('S', 'S'),
-        ('M', 'SM'),
-        ('L', 'L'),
-        ('XL', 'XL'),
-        ('XXL', 'XXL'),
-        ('S M', 'S M'),
-        ('M L', 'M L'),
-        ('L XL', 'L XL'),
-        ('XL XXL', 'XL XXL'),
-        ('S M L', 'S M L'),
-        ('M L XL', 'M L XL'),
-        ('L XL XXL', 'L XL XXL'),
-        ('S M L XL', 'S M L XL'),
-        ('M L XL XXL', 'M L XL XXL'),
-        ('S M L XL XXL', 'S M L XL XXL'),
-    ]
 
     name = models.CharField(max_length=100)
     type = models.CharField(max_length=50)
@@ -31,3 +32,12 @@ class Flower(models.Model):
 
     def __str__(self):
         return self.name
+    
+class CartItem(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    flower_id = models.IntegerField()
+    flower_size = models.CharField(max_length=12, choices=SIZE_CHOICES)
+    flower_num = models.IntegerField()
+
+    def __str__(self):
+        return f"User: {self.user}, Flower ID: {self.flower_id}, Size: {self.flower_size}, Quantity: {self.flower_num}" 

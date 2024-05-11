@@ -92,7 +92,7 @@
                 /></a>
             </div>
             <div class="usr">
-                <a href="{% url 'signup'%}">
+                <a href="{% url 'login'%}">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         height="clamp(1rem, 2vw, 3rem)"
@@ -110,7 +110,7 @@
                         <circle cx="12" cy="12" r="10" />
                     </svg>
                 </a>
-                <h2>Kalab kassa</h2>
+                <h2>{{ user_first_name }}</h2>
             </div>
         </div>
         <div class="checkout" aria-expanded="false">

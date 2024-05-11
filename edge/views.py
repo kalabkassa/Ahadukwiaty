@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Flower
 
 from django.shortcuts import HttpResponse
@@ -6,6 +6,11 @@ from django.views.decorators.http import require_POST
 import json
 from django.http import JsonResponse
 from django.shortcuts import redirect
+from .forms import CustomUserCreationForm, CustomAuthenticationForm
+from django.contrib.auth import authenticate, login
+
+from django.contrib.auth.decorators import login_required
+from .models import CartItem
 
 import paypalrestsdk
 
@@ -20,14 +25,10 @@ paypalrestsdk.configure({
 # Create your views here.
 def index(request):
     flowers = Flower.objects.all()
-    for flower in flowers:
-        print(flower.image)
     return render(request, 'edge/index.html', {'flowers': flowers})
 
 def flowers(request):
     flowers = Flower.objects.all()
-    for flower in flowers:
-        print(flower.image)
     return render(request, 'edge/Flowers.html', {'flowers': flowers})
 
 def aboutus(request):
@@ -57,6 +58,7 @@ def add_to_cart(request):
         cart.append(flower_id + ',' + flower_size + ',' + flower_num)
 
         request.session['cart'] = cart
+        updatedb_cart_item(request)
         return HttpResponse(json.dumps({'success': True}), content_type="application/json")
     else:
         return HttpResponse(json.dumps({'error': 'Method not allowed'}), status=405, content_type="application/json")
@@ -75,8 +77,8 @@ def remove_from_cart(request):
             cart = request.session['cart']
             if flower in cart:
                 cart.remove(flower)
+                get_object_or_404(CartItem, user=request.user, flower_id=flower_id).delete()
                 request.session['cart'] = cart
-                print(cart)
                 return JsonResponse({'message': 'Product removed from cart'}, status=200)
             else:
                 return JsonResponse({'error': 'Product not found in cart'}, status=400)
@@ -87,7 +89,6 @@ def remove_from_cart(request):
 
 def update_cart(request):
     if request.method == 'POST':
-
         data = json.loads(request.body)
         flower_id = data.get('flower_id')
         flower_size = data.get('flower_size')
@@ -97,14 +98,13 @@ def update_cart(request):
         if 'cart' in request.session:
             cart = request.session['cart']
             cart[flower]['size'] = flower_size
-
-
+        updatedb_cart_item(request)
 
 def get_cart(request):
+    updatedb_cart(request)
     cart = request.session.get('cart', [])
     # You may want to retrieve the actual product objects based on the product IDs in the cart
     # For simplicity, I'll just return the product IDs as JSON
-    print(cart)
     cart_html = ''
     cart_total_price = 0
     if cart:
@@ -223,7 +223,69 @@ def calc_total_price(request):
             total_price += price
     return total_price
 
+@login_required
+def updatedb_cart_item(request):
+    if request.session.get('cart'):
+        cart = request.session.get('cart')
+        # Update or create cart items in the database
+        
+        for flower in cart:
+            flower = flower.split(',')
+            flower_id = flower[0]
+            flower_size = flower[1]
+            flower_num = flower[2]
+            # Check if the item already exists in the database
+            cart_item, created = CartItem.objects.get_or_create(user=request.user, flower_id=flower_id, flower_num=flower_num, flower_size=flower_size)
+            # Update the quantity if the item exists
+            if not created:
+                cart_item.flower_size = flower_size
+                cart_item.flower_num = flower_num
+                cart_item.save()
+
+        del request.session['cart']
+
+    cart_items = CartItem.objects.filter(user=request.user)
+    cart = request.session.get('cart', [])
+
+    for flower_item in cart_items:
+        cart.append(str(flower_item.flower_id) + ',' + flower_item.flower_size + ',' + str(flower_item.flower_num))
+    print(cart)
+    request.session['cart'] = cart
+
+@login_required
+def updatedb_cart(request):
+    del request.session['cart']
+    cart_items = CartItem.objects.filter(user=request.user)
+    print(cart_items)
+    cart = request.session.get('cart', [])
+
+    for flower_item in cart_items:
+        cart.append(str(flower_item.flower_id) + ',' + flower_item.flower_size + ',' + str(flower_item.flower_num))
+    request.session['cart'] = cart
+    return JsonResponse({'message': 'db cart updated'}, status=200)
+
 def signup(request):
-    return render(request, "edge/signup.html")
-def login(request):
-    return render(request,"edge/login.html")
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'edge/signup.html', {'form': form})
+
+def login_view(request):
+    if request.method == 'POST':
+        form = CustomAuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                # Redirect to the home page or a specific page
+                updatedb_cart_item(request)
+                return redirect('home')
+    else:
+        form = CustomAuthenticationForm()
+    return render(request, 'edge/login.html', {'form': form})

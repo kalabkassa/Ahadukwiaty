@@ -1698,7 +1698,8 @@ body {
     font-size: clamp(0.5rem, 0.9vw, 2rem);
     margin-block: 1rem;
 }
-.signupright input {
+.signupright input:not([type="checkbox"]) {
+    margin-bottom: 1vw;
     padding-block: clamp(0.4rem, 0.7vw, 1rem);
     padding-inline-start: clamp(0.3rem, 0.5vw, 1rem);
     font-size: clamp(0.4rem, 0.9rem, 3rem);
@@ -1779,7 +1780,7 @@ input[type="text"]:focus {
     justify-content: center;
     flex-direction: column;
 }
-.login .signupright button{
+.login .signupright button {
     padding-inline: 7rem;
 }
 @media (max-width: 50em) {
