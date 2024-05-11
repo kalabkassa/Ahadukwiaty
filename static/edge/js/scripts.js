@@ -2,6 +2,13 @@ var panel = document.querySelector(".checkout");
 
 function hide() {
     panel.setAttribute("aria-expanded", false);
+    fetch("/updatedb_cart/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": getCookie("csrftoken"),
+        },
+    })
 }
 
 function show() {
