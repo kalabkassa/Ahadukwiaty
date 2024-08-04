@@ -19,21 +19,25 @@ body {
     display: flex;
     border-bottom-width: 1px;
     border-bottom-color: #eaeaea;
+    background-color: white;
     border-bottom-style: solid;
     align-items: center;
     gap: 4vw;
-    padding-left: 4vw;
+    padding-block: 1vh;
+    font-family: "Roboto", sans-serif;
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
 }
 .navbar a {
     font-size: clamp(0.6rem, 1vw, 2rem);
     padding: 0.5em 0.75em;
+    padding-left: 4vw;
 }
 .navcontents {
     display: flex;
     margin-left: auto;
     margin-right: auto;
-    justify-content: space-evenly;
-    flex-grow: 1;
 }
 
 .navcontents li a {
@@ -142,10 +146,12 @@ body {
     display: flex;
 }
 .icons {
-    width: clamp(1rem, 10vw, 11rem);
     display: flex;
     align-items: center;
     gap: clamp(0.6rem, 1vw, 2vw);
+}
+.icons a {
+    padding: 0;
 }
 .icons img {
     height: clamp(1rem, 1.5vw, 2rem);
@@ -158,9 +164,12 @@ body {
     flex-direction: column;
 }
 .herosection {
+    padding-top: 4vw;
     width: 100%;
     background-color: #fefaf1;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
     margin-bottom: 5rem;
     position: relative;
     z-index: 1;
@@ -168,7 +177,6 @@ body {
 }
 .herosection::after {
     content: "";
-
     position: absolute;
     width: 100%;
     aspect-ratio: 1;
@@ -183,37 +191,65 @@ body {
 
 .hero {
     width: clamp(32rem, 33vw, 37rem);
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    margin-left: clamp(1rem, 5rem, 6vw);
-    margin-right: 10%;
+    /* margin-left: clamp(1rem, 5rem, 6vw);
+    margin-right: 10%; */
 }
-.flower {
-    position: relative;
-    z-index: 10;
-    /* rotate: -30deg; */
+
+
+.hero h1 {
+    font-family: 'Playfair Display';
+    color: #470d38;
+    font-size: clamp(4.3rem, 4vw, 5rem);
+
+    margin-bottom: clamp(4rem, 4vw, 5rem);
+    margin-top: clamp(4rem, 6vw, 7rem);
 }
+.hero p {
+    font-family: 'Roboto';
+    color: rgba(0, 0, 0, 0.541);
+    font-size: clamp(0.5rem, 1.5vw, 2rem);
+    text-align: left;
+    font-weight: 400;
+    margin-bottom: 4rem;
+    margin-left: 2rem;
+}
+
 .usr {
     display: flex;
-    flex-direction: row;
     align-items: center;
+    margin: 0;
+    padding-inline: 2vw;
     /* border: 0.5px solid #dfdfdf; */
 }
 .usr h2 {
-    font-size: 1rem;
+    font-size: 1.2rem;
+    margin: 0;
+    padding: 0;
     margin-left: 1rem;
-    width: 15ch;
+    font-family: "Unlock", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.usr a {
+    padding: 0;
 }
 
-.flower img {
-    width: 100%;
-    margin-top: clamp(1rem, 1vw, 2rem);
-    margin-left: clamp(-0.5rem, -1vw, -2rem);
-}
+
 .hits .flower_img svg:hover {
     stroke: #cf4784;
 }
+
+.flower {
+    position: relative;
+    z-index: 10;
+    width: 50vw;
+    /* rotate: -30deg; */
+}
+
+.flower img {
+    width: 50vw;
+}
+
 .flower_img svg {
     position: absolute;
     background: white;
@@ -237,15 +273,12 @@ body {
 .flower::after,
 .flower::before {
     content: "";
-    width: clamp(10rem, 34vw, 51rem);
-    height: clamp(9rem, 30vw, 51rem);
+    width: 40vw;
+    aspect-ratio: 1;
     position: absolute;
-
-    top: 9%;
-    bottom: 0;
-    left: 7%;
-    right: 0;
     border-radius: 50%;
+    top: 2.5vw;
+    left: 5vw;
 }
 .flower::before {
     animation: pulse 7s;
@@ -260,7 +293,7 @@ body {
 
 @keyframes pulse {
     0% {
-        transform: scale(0);
+        transform: scale(0.3);
         background: hsl(339, 69%, 73%);
     }
 
@@ -301,21 +334,6 @@ body {
     }
 }
 
-.hero h1 {
-    font-family: serif;
-    color: #470d38;
-    font-size: clamp(1rem, 4vw, 6rem);
-
-    margin-bottom: clamp(1rem, 4vw, 5rem);
-    margin-top: clamp(1rem, 6vw, 7rem);
-}
-.hero p {
-    color: rgba(0, 0, 0, 0.541);
-    font-size: clamp(0.5rem, 1.5vw, 2rem);
-    text-align: left;
-    font-weight: 200;
-    margin-bottom: 4rem;
-}
 .options {
     /* width: 62%; */
     width: clamp(20rem, 70vw, 70rem);
