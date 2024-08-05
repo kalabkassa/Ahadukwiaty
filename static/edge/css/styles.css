@@ -195,19 +195,18 @@ body {
     margin-right: 10%; */
 }
 
-
 .hero h1 {
-    font-family: 'Playfair Display';
+    font-family: "Playfair Display";
     color: #470d38;
-    font-size: clamp(4.3rem, 4vw, 5rem);
+    font-size: clamp(4.3rem, 4.5vw, 6rem);
 
-    margin-bottom: clamp(4rem, 4vw, 5rem);
+    margin-bottom: clamp(4rem, 2vw, 4rem);
     margin-top: clamp(4rem, 6vw, 7rem);
 }
 .hero p {
-    font-family: 'Roboto';
+    font-family: "Roboto";
     color: rgba(0, 0, 0, 0.541);
-    font-size: clamp(0.5rem, 1.5vw, 2rem);
+    font-size: clamp(0.5rem, 1.2vw, 2rem);
     text-align: left;
     font-weight: 400;
     margin-bottom: 4rem;
@@ -234,7 +233,6 @@ body {
     padding: 0;
 }
 
-
 .hits .flower_img svg:hover {
     stroke: #cf4784;
 }
@@ -242,12 +240,12 @@ body {
 .flower {
     position: relative;
     z-index: 10;
-    width: 50vw;
+    width: 35vw;
     /* rotate: -30deg; */
 }
 
 .flower img {
-    width: 50vw;
+    width: 35vw;
 }
 
 .flower_img svg {
@@ -258,27 +256,17 @@ body {
     padding: 0.5rem;
     margin: 0.7rem;
 }
-.hitbadge {
-    position: absolute;
-    background: #cf4784;
-    color: white;
-    font-size: 1rem;
-    padding-block: 0.3rem;
-    padding-inline: 0.3rem;
-    z-index: 100;
-    right: 2.8rem;
-    bottom: 0.1rem;
-}
+
 
 .flower::after,
 .flower::before {
     content: "";
-    width: 40vw;
+    width: 30vw;
     aspect-ratio: 1;
     position: absolute;
     border-radius: 50%;
-    top: 2.5vw;
-    left: 5vw;
+    /* top: 2.5vw; */
+    left: 2.5vw;
 }
 .flower::before {
     animation: pulse 7s;
@@ -410,7 +398,7 @@ body {
 
     background-image: url("../images/flowercomposition.jpg");
     background-repeat: no-repeat;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.548);
     position: relative;
     z-index: 1;
 
@@ -577,12 +565,15 @@ body {
     justify-content: center;
     align-items: center;
     gap: clamp(0.1rem, 5vw, 6rem);
+    font-family: "Roboto";
+    font-weight: 2 00;
 }
 .discriptions img {
     width: clamp(3rem, 4vw, 5rem);
 }
 .discriptions h4 {
     font-size: clamp(0.4rem, 1vw, 2rem);
+    padding-top: 2rem;
 }
 .discription {
     display: flex;
@@ -591,18 +582,24 @@ body {
     justify-content: center;
 }
 .sales {
-    width: 62%;
+    width: 70%;
+}
+.sales h1 {
+    font-family: "Roboto";
+    color: #2a0f21;
 }
 .grid {
     display: grid;
-    gap: 4rem;
+    gap: 4vw;
     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
 }
 .hits {
     padding-top: 3rem;
     margin-bottom: 3rem;
+    width: clamp(10rem, 15vw, 20rem);
+    border-radius: .3rem;
+    overflow: hidden;
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
     gap: 0.5rem;
 }
@@ -615,8 +612,23 @@ body {
 }
 .hits .flower_img {
     height: clamp(14rem, 15vw, 20rem);
+    width: clamp(14rem, 15vw, 20rem);
     position: relative;
     overflow: hidden;
+    background-color: #cf4784;
+}
+.hitbadge {
+    position: absolute;
+    background: #cf4784;
+    color: white;
+    font-size: 1rem;
+    padding-block: 0.3rem;
+    padding-inline: 0.3rem;
+    z-index: 100;
+    right: 0;
+    bottom: 0;
+    font-family: 'Gupter';
+    font-weight: 700;
 }
 .size {
     display: flex;
@@ -1376,9 +1388,9 @@ body {
     width: clamp(1rem, 16vw, 20vw);
 }
 .addtocart {
-    /* padding: 0.7rem; */
-    padding-inline: clamp(5rem, 8vw, 10rem);
-    font-size: clamp(0.5rem, 0.7vw, 2rem);
+    padding: 0.7rem;
+    /* padding-inline: clamp(5rem, 8vw, 10rem); */
+    font-size: clamp(0.5rem, 1vw, 2rem);
     background: #cf4784;
     color: white;
     border: none;
