@@ -32,7 +32,8 @@ body {
 .navbar a {
     font-size: clamp(0.6rem, 1vw, 2rem);
     padding: 0.5em 0.75em;
-    padding-left: 4vw;
+    padding-left: clamp(0.6rem, 2vw, 3rem);
+    padding-right: clamp(0.6rem, 2vw, 3rem);
 }
 .navcontents {
     display: flex;
@@ -59,7 +60,7 @@ body {
     position: relative;
 }
 
-.nav li:hover > a {
+.navcontents li:hover > a {
     color: #f83e91;
 }
 
@@ -585,16 +586,17 @@ body {
     width: 70%;
 }
 .sales h1 {
+    padding-bottom: 3rem;
     font-family: "Roboto";
     color: #2a0f21;
 }
 .grid {
     display: grid;
-    gap: 4vw;
+    column-gap: 3vw;
     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
 }
 .hits {
-    padding-top: 3rem;
+    /* padding-top: 2vw; */
     margin-bottom: 3rem;
     width: clamp(10rem, 15vw, 20rem);
     border-radius: .3rem;
@@ -770,21 +772,20 @@ body {
     margin-top: clamp(1rem, 2vw, 3rem);
     margin-right: clamp(1rem, 4vw, 5rem);
     background: #f8f4f6;
+    font-family: 'Roboto';
 }
 
 .search-input {
-    height: clamp(1rem, 2vw, 3rem);
-    font-family: serif;
-    font-size: clamp(0.5rem, 0.9vw, 1.2rem);
+    height: clamp(1rem, 3vw, 3rem);
+    font-size: clamp(0.5rem, 1.2vw, 1.2rem);
     padding-left: 0.3vw;
-    width: clamp(7rem, 10vw, 27rem);
+    width: clamp(7rem, 14vw, 27rem);
     border: 2px solid #dee2e6;
-
+    border-radius: .5rem;
     color: #212529bf;
-    margin: 0;
 }
 .searchbtn {
-    border-radius: 6%;
+    border-radius: 10%;
     padding-block: clamp(0.1rem, 0.4vw, 0.7rem);
     padding-inline: clamp(0.1rem, 0.8vw, 0.7rem);
     background-color: #cf4784;
@@ -798,13 +799,14 @@ body {
 .searcher {
     display: flex;
     flex-direction: row;
+    gap: 1rem;
 }
 .catagories h2 {
     margin-top: 2rem;
     margin-bottom: 2rem;
-    font-size: clamp(1rem, 1.5vw, 4rem);
-    font-family: serif;
-    font-weight: 400;
+    font-size: clamp(1rem, 2vw, 4rem);
+    font-family: 'Roboto';
+    font-weight: 500;
 }
 .catagories p {
     padding-left: clamp(0.1rem, 2vw, 3rem);
@@ -835,6 +837,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding-bottom: 1rem;
 }
 #popup {
     width: 12rem;
