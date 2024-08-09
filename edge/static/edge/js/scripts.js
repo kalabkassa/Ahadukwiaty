@@ -140,3 +140,15 @@ function getCookie(name) {
     }
     return cookieValue;
 }
+
+function mob_menu(){
+    const nav = document.querySelector(".navcontents"); 
+    const visiblity = nav.getAttribute("data-visible");
+    if(visiblity === "false"){
+        nav.setAttribute("data-visible", "true");
+    }
+    else if(visiblity === "true"){
+        nav.setAttribute("data-visible", "false");
+    }
+    console.log(visiblity);
+}

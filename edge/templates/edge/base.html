@@ -14,113 +14,115 @@
     <body>
         <div class="navbar">
             <div class="logo"><a href="{% url 'home' %}">Ahadu</a></div>
-            <div class="navcontents">
-                <ul class="nav">
-                    <li id="mainmenu">
-                        <a href="{% url 'flower' %}">Flowers</a>
-                        <div class="mainmenu">
-                            <ul>
-                                <li class="mainmenu">
-                                    <a href="{% url 'flower' %}#1">Bouquets</a>
-                                    <div class="submenu">
-                                        <ul>
-                                            <li>
-                                                <a href="{% url 'flower' %}#1"
-                                                    >Bouquets of roses</a
-                                                >
-                                            </li>
-                                            <li>
-                                                <a href="{% url 'flower' %}#1"
-                                                    >Bouquets mix</a
-                                                >
-                                            </li>
-                                            <li>
-                                                <a href="{% url 'flower' %}#1"
-                                                    >Monobouquets</a
-                                                >
-                                            </li>
-
-                                            <li>
-                                                <a href="{% url 'flower' %}#1"
-                                                    >Tulips</a
-                                                >
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a href="{% url 'flower' %}#1"
-                                        >Flower compositions</a
-                                    >
-                                </li>
-                                <li class="mainmenu2">
-                                    <a href="{% url 'flower' %}#1"
-                                        >Wedding floristry</a
-                                    >
-                                    <div class="submenu" id="third">
-                                        <ul>
-                                            <li>
-                                                <a href="{% url 'flower' %}#1"
-                                                    >Wedding bouquets</a
-                                                >
-                                            </li>
-                                            <li>
-                                                <a href="{% url 'flower' %}#1"
-                                                    >Decorations</a
-                                                >
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-                <li>
-                    <a href="{% url 'delivery' %}">Delivery and payment</a>
-                </li>
-                <li><a href="{% url 'aboutus' %}">About us</a></li>
-                <li><a href="{% url 'contactus' %}">Contact</a></li>
-            </div>
-            <div class="mob-menu">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-            </div>
-            <div class="icons">
-                <a href="">
-                    <img
-                    src="{% static 'edge/images/phone-call-svgrepo-com.svg' %}"
-                    />
-                </a>
-                <a href="{% url 'wishlist' %}">
-                    <img src="{% static 'edge/images/heart-svgrepo-com.svg' %}"
-                /></a>
-                <a onclick="loadCart()">
-                    <img
-                        src="{% static 'edge/images/basket-svgrepo-com.svg' %}"
-                /></a>
-            </div>
-            <div class="usr">
-                <a href="{% url 'login'%}">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        height="clamp(1rem, 2vw, 3rem)"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="black"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
-                        <path
-                            d="M5.52 19c.64-2.2 1.84-3 3.22-3h6.52c1.38 0 2.58.8 3.22 3"
+            <div class="navcontents" data-visible="false">
+                <div class="navlinks">
+                    <ul class="nav">
+                        <li id="mainmenu">
+                            <a href="{% url 'flower' %}">Flowers</a>
+                            <div class="mainmenu">
+                                <ul>
+                                    <li class="mainmenu">
+                                        <a href="{% url 'flower' %}#1">Bouquets</a>
+                                        <div class="submenu">
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'flower' %}#1"
+                                                        >Bouquets of roses</a
+                                                    >
+                                                </li>
+                                                <li>
+                                                    <a href="{% url 'flower' %}#1"
+                                                        >Bouquets mix</a
+                                                    >
+                                                </li>
+                                                <li>
+                                                    <a href="{% url 'flower' %}#1"
+                                                        >Monobouquets</a
+                                                    >
+                                                </li>
+    
+                                                <li>
+                                                    <a href="{% url 'flower' %}#1"
+                                                        >Tulips</a
+                                                    >
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'flower' %}#1"
+                                            >Flower compositions</a
+                                        >
+                                    </li>
+                                    <li class="mainmenu2">
+                                        <a href="{% url 'flower' %}#1"
+                                            >Wedding floristry</a
+                                        >
+                                        <div class="submenu" id="third">
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'flower' %}#1"
+                                                        >Wedding bouquets</a
+                                                    >
+                                                </li>
+                                                <li>
+                                                    <a href="{% url 'flower' %}#1"
+                                                        >Decorations</a
+                                                    >
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="{% url 'delivery' %}">Delivery and payment</a>
+                        </li>
+                        <li><a href="{% url 'aboutus' %}">About us</a></li>
+                        <li><a href="{% url 'contactus' %}">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="icons">
+                    <a href="">
+                        <img
+                        src="{% static 'edge/images/phone-call-svgrepo-com.svg' %}"
                         />
-                        <circle cx="12" cy="10" r="3" />
-                        <circle cx="12" cy="12" r="10" />
-                    </svg>
-                </a>
-                <h2>{{ user_first_name }}</h2>
+                    </a>
+                    <a href="{% url 'wishlist' %}">
+                        <img src="{% static 'edge/images/heart-svgrepo-com.svg' %}"
+                    /></a>
+                    <a onclick="loadCart()">
+                        <img
+                            src="{% static 'edge/images/basket-svgrepo-com.svg' %}"
+                    /></a>
+                </div>
+                <div class="usr">
+                    <a href="{% url 'login'%}">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="clamp(2rem, 2vw, 3rem)"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="black"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path
+                                d="M5.52 19c.64-2.2 1.84-3 3.22-3h6.52c1.38 0 2.58.8 3.22 3"
+                            />
+                            <circle cx="12" cy="10" r="3" />
+                            <circle cx="12" cy="12" r="10" />
+                        </svg>
+                    </a>
+                    <h2>{{ user_first_name }} Robel</h2>
+                </div>
+            </div>
+            <div class="mob-menu" onclick="mob_menu()">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
             </div>
         </div>
         <div class="checkout" aria-expanded="false">

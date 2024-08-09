@@ -30,23 +30,29 @@ body {
     width: 100%;
 }
 .navbar a {
-    font-size: clamp(1  rem, 1vw, 2rem);
+    font-size: clamp(1.1rem, 1vw, 2rem);
     padding: 0.5em 0.75em;
     padding-left: clamp(0.6rem, 2vw, 3rem);
     padding-right: clamp(0.6rem, 2vw, 3rem);
 }
 .navcontents {
+    width: 100%;
+    display: flex;
+}
+
+.navlinks {
     display: flex;
     margin-left: auto;
     margin-right: auto;
+    align-items: center;
 }
 
-.navcontents li a {
+.navlinks li a {
     text-decoration: none;
     color: black;
 }
 
-.navcontents li {
+.navlinks li {
     list-style-type: none;
 }
 .content {
@@ -58,9 +64,10 @@ body {
 
 .nav {
     position: relative;
+    display: flex;
 }
 
-.navcontents li:hover > a {
+.navlinks li:hover > a {
     color: #f83e91;
 }
 
@@ -133,7 +140,7 @@ body {
 .dropdown:hover .dropdowncontent {
     display: flex;
 }
-.navcontents li .dropdown :hover {
+.navlinks li .dropdown :hover {
     color: #f83e91;
 }
 
@@ -155,7 +162,7 @@ body {
     padding: 0;
 }
 .icons img {
-    height: clamp(1rem, 1.5vw, 2rem);
+    height: clamp(1.5rem, 1.5vw, 2rem);
     cursor: pointer;
 }
 .mob-menu {
@@ -223,6 +230,7 @@ body {
     padding-inline: 2vw;
     /* border: 0.5px solid #dfdfdf; */
 }
+
 .usr h2 {
     font-size: 1.2rem;
     margin: 0;
@@ -1415,7 +1423,8 @@ body {
     position: fixed;
     top: 0;
     right: 0;
-    width: clamp(11rem, 35vw, 41rem);
+    /* width: clamp(11rem, 35vw, 41rem); */
+    inset: 0 0 0 70%;
     background: white;
     z-index: 10000;
     padding-inline: 1rem;
@@ -1824,9 +1833,38 @@ input[type="text"]:focus {
     padding-inline: 7rem;
 }
 @media (max-width: 50em) {
+    .navcontents {
+        gap: 1.4rem;
+        position: fixed;
+        inset: 0 0 0 30%;
+
+        flex-direction: column-reverse;
+        justify-content: flex-end;
+        padding: min(15vh, 5rem) 2rem;
+        background-color: hsl(0 0% 100% / 0.1);
+        backdrop-filter: blur(1rem);
+        transform: translateX(100%);
+    }
+    .navcontents[data-visible="true"]{
+        transform: translateX(0%);
+    }
+    .nav, .navlinks {
+        padding-top: 1.2vh;
+        flex-direction: column;
+        margin: 0;
+        align-items:flex-start;
+        gap: 1rem;
+    }
     .mob-menu {
         display: block;
         padding-right: 1rem;
+        z-index: 9999;
+    }
+    .usr {
+        padding: 0;
+    }
+    .checkout {
+        inset: 0 0 0 30%;
     }
     .flower::after,
     .flower::before {
@@ -1928,12 +1966,6 @@ input[type="text"]:focus {
     .checkoutlist img {
         padding: 0rem;
         margin: 0rem;
-    }
-    .icons {
-        display: none;
-    }
-    .navcontents{
-        display: none;
     }
     .content {
         gap: 0.5rem;
@@ -2062,8 +2094,5 @@ input[type="text"]:focus {
     }
     .befirst input {
         padding-block: 0rem;
-    }
-    .usr {
-        display: none;
     }
 }
